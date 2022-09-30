@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Page Home</title>
+</head>
+<body>
+	
+	<h:form id="login" style="margin-top: 20%; margin-left: 40%; background-color: #9d9ea0; " >
+		
+	<h:panelGrid columns="2" cellpadding="2">
+	
+	<h:outputLabel value="Login: "/>
+	<h:inputText value="#{userBean.userRegister.userName}"/>
+	
+	<h:outputLabel value="Password: "/>
+	<h:inputSecret value="#{userBean.userRegister.senha}"/>
+	
+	<h:panelGroup>
+	<h:commandButton value="Acess" action="#{userBean.acess}"/>
+	<h:commandButton value="Delete" type="reset"/>
+	</h:panelGroup>
+	
+	</h:panelGrid>
+	
+	</h:form>
+	
+</body>
+</html>

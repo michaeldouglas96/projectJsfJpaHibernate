@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	
+<title>Register Users</title>
+</head>
+<body>
+	
+	<div style="padding-right: 100">
+		<h:graphicImage url="https://marcas-logos.net/wp-content/uploads/2020/11/Java-logo.jpg" height="70" width="130" />
+	</div>
+
+	<h:form id="formUserRegister">
+
+		<h:panelGrid columns="2">
+		
+			<f:facet name="header">REGISTER USER</f:facet>
+
+			<h:outputText value="ID: " />
+			<h:inputText id="id" value="#{userBean.userRegister.id}" readonly="true" />
+			
+			<h:outputLabel value="Name: " />
+			<h:inputText id="name" value="#{userBean.userRegister.name}" />
+			
+			<h:outputLabel value="E-mail: " />
+			<h:inputText id="email" value="#{userBean.userRegister.email}" />
+			
+
+			<h:outputLabel value="Login: " />
+			<h:inputText id="login" value="#{userBean.userRegister.login}" />
+			
+			<h:outputLabel value="Password: " />
+			<h:inputText id="password" value="#{userBean.userRegister.password}" />
+			
+			<h:outputLabel value="Age: " />
+			<h:inputText value="#{userBean.userRegister.age}" />
+			
+			<h:outputLabel value="Genre: "/>
+			
+			<h:selectOneMenu id="idGenre" value="#{userBean.userRegister.genre}" required="true">
+				<f:selectItem itemValue="Nao especificado" itemLabel="[-Select-]"/>
+				<f:selectItem itemValue="Masculino" itemLabel="Masculino"/>
+				<f:selectItem itemValue="Feminino" itemLabel="Feminino"/>
+			</h:selectOneMenu>
+			
+			
+			<h:outputText value="Frameworks: "/>
+			
+			<h:selectManyMenu id="idFrameworks" value="#{userBean.userRegister.frameworks}" style="height:70px">
+				<f:selectItem itemLabel="JSF" itemValue="JSF"/>
+				<f:selectItem itemLabel="JPA" itemValue="JPA"/>
+				<f:selectItem itemLabel="Hibernate" itemValue="Hibernate"/>
+				<f:selectItem itemLabel="Spring Boot" itemValue="Spring Boot"/>
+			</h:selectManyMenu>
+			
+			
+			<h:outputLabel value="Active"/>
+			<h:selectBooleanCheckbox value="#{userBean.userRegister.active}" />
+			
+			<h:outputLabel value="Admin: "/>
+			<h:inputText value="#{userBean.userRegister.userName}"/>
+			
+			<h:outputLabel value="Password: "/>
+			<h:inputSecret value="#{userBean.userRegister.senha}"/>
+			
+			<h:outputLabel value="Perfil: "/>
+			<h:selectOneMenu id="perfil" value="#{userBean.userRegister.perfil}" required="true">
+				<f:selectItem itemValue="Nao especificado" itemLabel="[-Select-]"/>
+				<f:selectItem itemValue="Administrator" itemLabel="Administrator"/>
+				<f:selectItem itemValue="Secretary" itemLabel="Secretary"/>
+				<f:selectItem itemValue="Receptionist" itemLabel="Receptionist"/>
+			</h:selectOneMenu>
+			
+			<h:outputLabel/>
+			
+			
+			<h:panelGroup>
+				<h:commandButton title="New" action="#{userBean.newUser}" image="/resources/css/img/new.png" />
+				<h:commandButton title="Save" action="#{userBean.newUser}" image="/resources/css/img/salvar.png" />
+				<h:commandButton title="Delete" action="#{userBean.deleteUser}" image="/resources/css/img/deletar.png"/>
+				<h:commandButton title="Reset" type="reset" image="/resources/css/img/apagar.png"/>
+			</h:panelGroup>
+			
+			
+		</h:panelGrid>
+
+			<h:dataTable value="#{userBean.userRegisters}" var="users" border="3" cellpadding="5">
+			
+				<f:facet name="header">LIST REGISTERS</f:facet>
+				
+				<h:column>
+					<f:facet name="header">ID</f:facet>
+					<h:outputText value="#{users.id}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Name</f:facet>
+					<h:outputText value="#{users.name}" />
+				</h:column>
+
+				
+				<h:column>
+					<f:facet name="header">E-mail</f:facet>
+					<h:outputText value="#{users.email}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Login</f:facet>
+					<h:outputText value="#{users.login}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Age</f:facet>
+					<h:outputText value="#{users.age}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Password</f:facet>
+					<h:outputText value="#{users.password}" />
+				</h:column>
+
+				<h:column>
+				<f:facet name="header">Edit</f:facet>
+					<h:commandLink>
+						<h:graphicImage title="Edit" value="/resources/css/img/salvar.png"/>
+						<f:setPropertyActionListener value="#{users}" target="#{userBean.userRegister}" />
+					</h:commandLink>
+					</h:column>
+					
+					<h:column>
+					<f:facet name="header">Remove</f:facet>
+					<h:commandLink action="#{userBean.deleteUser}">
+						<h:graphicImage title="Remove" value="/resources/css/img/deletar.png"/>
+						<f:setPropertyActionListener value="#{users}" target="#{userBean.userRegister}" />
+					</h:commandLink>
+				</h:column>
+
+			</h:dataTable>
+		
+	</h:form>
+
+
+</body>
+</html>
